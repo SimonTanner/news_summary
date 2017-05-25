@@ -27,6 +27,12 @@ var assert = {
     if ( a instanceof b !== true) {
       throw new Error("Assertion failed: " + a + "is not an instance of " + b);
     }
+  },
+
+  isArrayEqual: function(a, b) {
+    if (a.join("") !== b.join("")) {
+      throw new Error("Assertion failed: " + a + " is not equal to " + b);
+    }
   }
 
 };
