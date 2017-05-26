@@ -15,7 +15,9 @@
     return headlineList;
   };
 
-  Headlines.prototype.getHTML = function(headlinelist) {
+  Headlines.prototype.getHTML = function(index) {
+    var headlinelist = this.listHeadlines().slice(0, index);
+    console.log(headlinelist);
     string = "";
     headlinelist.forEach(function(headline) {
       string += "<li><div>" + headline + "</div></li>";
