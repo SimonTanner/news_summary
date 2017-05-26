@@ -22,6 +22,13 @@ function getResponse(id) {
   };
   request.open('GET', getSummary(id));
   request.send(null);
-  console.log(summaryResponse);
   return summaryResponse;
+}
+
+function showSummary(id) {
+  var summary = getResponse(id);
+  setTimeout(function() {
+    element = document.getElementById('summary');
+    element.innerHTML = headlines.getSummaryHTML(summary);
+  },2000);
 }

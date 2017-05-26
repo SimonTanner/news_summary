@@ -20,7 +20,7 @@
     string = "";
     counter = 0;
     headlinelist.forEach(function(headline) {
-      string += `<li><div><a href='javascript:getResponse(${counter})'>` + headline + "</a></div></li>";
+      string += `<li><div><a href='javascript:showSummary(${counter})'>` + headline + "</a></div></li>";
       counter ++;
     });
     return "<ul>" + string + "</ul>";
@@ -28,6 +28,10 @@
 
   Headlines.prototype.getUrl = function(index){
     return this.rawData.response.results[index].webUrl;
+  };
+
+  Headlines.prototype.getSummaryHTML = function(summary) {
+    return "<h2>Summary</h2><div>" + summary[0].text + "</div>";
   };
 
   exports.Headlines = Headlines;
