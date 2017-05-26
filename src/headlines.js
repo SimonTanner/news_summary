@@ -9,9 +9,9 @@
 
   Headlines.prototype.listHeadlines = function() {
     var headlineList = [];
-    this.rawData['response']['results'].forEach(function(story) {
-      headlineList.push(story['webTitle']);
-    })
+    this.rawData.response.results.forEach(function(story) {
+      headlineList.push(story.webTitle);
+    });
     return headlineList;
   };
 
