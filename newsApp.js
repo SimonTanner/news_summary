@@ -1,34 +1,51 @@
-var headlines = new Headlines(guardianApiReq1);
+
+
+function getHeadlines() {
+  return "http://news-summary-api.herokuapp.com/guardian?apiRequestUrl=http://content.guardianapis.com/search?"
+}
 
 function getStories() {
   element = document.getElementById('headlines');
-  element.innerHTML = headlines.getHTML(6);
+  element.innerHTML = headlines.getHTML(10);
 }
 
-getStories();
+
 
 function getSummary(id){
   var url = headlines.getUrl(id);
   return "http://news-summary-api.herokuapp.com/aylien?apiRequestUrl=https://api.aylien.com/api/v1/summarize?url=" + url
 }
 
-function getResponse(id) {
-  var summaryResponse = [];
+function getResponse(method) {
+  var Response = [];
   var request = new XMLHttpRequest();
   request.onreadystatechange = function() {
     if(request.readyState === 4 && request.status === 200) {
-      summaryResponse.push(JSON.parse(request.responseText));
+      Response.push(JSON.parse(request.responseText));
       }
   };
-  request.open('GET', getSummary(id));
+  request.open('GET', method);
   request.send(null);
-  return summaryResponse;
+
+  return Response;
 }
 
 function showSummary(id) {
-  var summary = getResponse(id);
+  var summary = getResponse(getSummary(id));
   setTimeout(function() {
     element = document.getElementById('summary');
     element.innerHTML = headlines.getSummaryHTML(summary);
   },2000);
 }
+var guardianNews = getResponse(getHeadlines());
+var headlines;
+setTimeout(function() {
+  guardianNews = guardianNews[0];
+  headlines = new Headlines(guardianNews);
+}, 2000);
+
+setTimeout(function() {
+  getStories();
+}, 3000);
+
+// var headlines = new Headlines(guardianApiReq1);
