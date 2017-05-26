@@ -16,6 +16,5 @@
 (function() {
   console.log("Unit test: Headlines can return a string of HTML formatted headlines");
   var headlines = new Headlines(guardianApiReq1);
-
-  assert.isEqual(headlines.getHTML(1), "<ul><li><div>Theresa May plans anti-extremism drive if Tories win election</div></li></ul>");
+  assert.isEqual(headlines.getHTML(1), "<ul><li><div><a href='javascript:getResponse()'>Theresa May plans anti-extremism drive if Tories win election</div></li></ul>");
 })();
