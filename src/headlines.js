@@ -15,5 +15,13 @@
     return headlineList;
   };
 
+  Headlines.prototype.getHTML = function(headlinelist) {
+    string = "";
+    headlinelist.forEach(function(headline) {
+      string += "<li><div>" + headline + "</div></li>";
+    });
+    return "<ul>" + string + "</ul>";
+  };
+
   exports.Headlines = Headlines;
 })(this);
